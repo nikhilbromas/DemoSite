@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prolio - Modern Architecture Firm</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'prolio-dark': '#1a1a1a',
+                        'prolio-gray': '#f8f9fa',
+                        'prolio-accent': '#2563eb',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(26, 26, 26, 0.8) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23e5e7eb" stroke-width="1" opacity="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        }
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        .portfolio-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .section-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="font-inter bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-effect border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <h1 class="text-2xl font-bold text-prolio-dark">Prolio</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link text-prolio-dark hover:text-prolio-accent px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="#about" class="nav-link text-prolio-dark hover:text-prolio-accent px-3 py-2 text-sm font-medium transition-colors">About</a>
+                        <a href="#services" class="nav-link text-prolio-dark hover:text-prolio-accent px-3 py-2 text-sm font-medium transition-colors">Services</a>
+                        <a href="#portfolio" class="nav-link text-prolio-dark hover:text-prolio-accent px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
+                        <a href="#testimonials" class="nav-link text-prolio-dark hover:text-prolio-accent px-3 py-2 text-sm font-medium transition-colors">Testimonials</a>
+                        <a href="#contact" class="nav-link text-prolio-dark hover:text-prolio-accent px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-prolio-dark hover:text-prolio-accent">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden glass-effect border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-prolio-dark hover:text-prolio-accent text-base font-medium">Home</a>
+                <a href="#about" class="block px-3 py-2 text-prolio-dark hover:text-prolio-accent text-base font-medium">About</a>
+                <a href="#services" class="block px-3 py-2 text-prolio-dark hover:text-prolio-accent text-base font-medium">Services</a>
+                <a href="#portfolio" class="block px-3 py-2 text-prolio-dark hover:text-prolio-accent text-base font-medium">Portfolio</a>
+                <a href="#testimonials" class="block px-3 py-2 text-prolio-dark hover:text-prolio-accent text-base font-medium">Testimonials</a>
+                <a href="#contact" class="block px-3 py-2 text-prolio-dark hover:text-prolio-accent text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="section-fade">
+                <h1 class="text-5xl md:text-7xl font-bold text-prolio-dark mb-6 leading-tight">
+                    Crafting Spaces<br>
+                    <span class="text-prolio-accent">That Inspire</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto leading-relaxed">
+                    Modern architecture firm dedicated to creating innovative, sustainable, and beautiful spaces that enhance human experience.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="#portfolio" class="bg-prolio-accent text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                        View Our Work
+                    </a>
+                    <a href="#contact" class="border-2 border-prolio-accent text-prolio-accent px-8 py-4 rounded-lg font-semibold hover:bg-prolio-accent hover:text-white transition-colors">
+                        Start a Project
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 bg-prolio-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-fade">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-prolio-dark mb-6">About Prolio</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        We are a forward-thinking architecture firm committed to pushing the boundaries of design while creating spaces that are both functional and inspiring.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold text-prolio-dark mb-6">Our Philosophy</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            At Prolio, we believe that great architecture is born from the perfect balance of innovation, sustainability, and human-centered design. Every project we undertake is an opportunity to create something extraordinary.
+                        </p>
+                        <p class="text-gray-600 mb-8 leading-relaxed">
+                            Our team of passionate architects and designers brings together diverse perspectives and cutting-edge expertise to deliver spaces that not only meet today's needs but anticipate tomorrow's possibilities.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-prolio-accent mb-2">150+</div>
+                                <div class="text-gray-600">Projects Completed</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-prolio-accent mb-2">15+</div>
+                                <div class="text-gray-600">Years Experience</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-prolio-accent mb-2">50+</div>
+                                <div class="text-gray-600">Happy Clients</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-prolio-accent mb-2">25+</div>
+                                <div class="text-gray-600">Awards Won</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-xl">
+                        <div class="h-80 bg-gradient-to-br from-prolio-accent to-blue-700 rounded-xl mb-6 flex items-center justify-center">
+                            <i class="fas fa-building text-white text-6xl"></i>
+                        </div>
+                        <h4 class="text-xl font-semibold text-prolio-dark mb-4">Award-Winning Design</h4>
+                        <p class="text-gray-600">
+                            Our innovative approach has earned recognition from industry leaders and architectural institutions worldwide.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-fade">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-prolio-dark mb-6">Our Services</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        From concept to completion, we offer comprehensive architectural services tailored to your unique vision and requirements.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-drafting-compass text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-prolio-dark mb-4">Architectural Design</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Complete architectural design services from initial concept through detailed construction drawings, ensuring every detail is perfectly executed.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-city text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-prolio-dark mb-4">Urban Planning</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Strategic urban planning solutions that create sustainable, livable communities while respecting local culture and environment.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-home text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-prolio-dark mb-4">Interior Design</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Comprehensive interior design services that seamlessly integrate with architectural vision to create cohesive, beautiful spaces.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-leaf text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-prolio-dark mb-4">Sustainable Design</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Eco-friendly design solutions that minimize environmental impact while maximizing energy efficiency and occupant comfort.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-cogs text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-prolio-dark mb-4">Project Management</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            End-to-end project management ensuring seamless coordination, timely delivery, and budget adherence throughout construction.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6">
+                            <i class="fas fa-search text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-prolio-dark mb-4">Consultation</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            Expert architectural consultation services to help you make informed decisions about your project's design and development.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 bg-prolio-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-fade">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-prolio-dark mb-6">Our Portfolio</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Explore our collection of innovative architectural projects that showcase our commitment to excellence and creativity.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="portfolio-item bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="h-64 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
+                            <i class="fas fa-building text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-prolio-dark mb-2">Modern Office Complex</h3>
+                            <p class="text-gray-600 mb-4">A state-of-the-art office building featuring sustainable design and innovative workspace solutions.</p>
+                            <span class="text-prolio-accent font-semibold">Commercial • 2023</span>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="h-64 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
+                            <i class="fas fa-home text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-prolio-dark mb-2">Luxury Residential</h3>
+                            <p class="text-gray-600 mb-4">Contemporary luxury home with panoramic views and seamless indoor-outdoor living spaces.</p>
+                            <span class="text-prolio-accent font-semibold">Residential • 2023</span>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="h-64 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-university text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-prolio-dark mb-2">Cultural Center</h3>
+                            <p class="text-gray-600 mb-4">Award-winning cultural center that celebrates local heritage through modern architectural expression.</p>
+                            <span class="text-prolio-accent font-semibold">Cultural • 2022</span>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="h-64 bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
+                            <i class="fas fa-shopping-bag text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-prolio-dark mb-2">Retail Plaza</h3>
+                            <p class="text-gray-600 mb-4">Mixed-use retail development with innovative public spaces and sustainable design features.</p>
+                            <span class="text-prolio-accent font-semibold">Retail • 2022</span>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="h-64 bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center">
+                            <i class="fas fa-tree text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-prolio-dark mb-2">Eco-Resort</h3>
+                            <p class="text-gray-600 mb-4">Sustainable resort design that harmonizes with natural landscape while providing luxury amenities.</p>
+                            <span class="text-prolio-accent font-semibold">Hospitality • 2021</span>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item bg-white rounded-2xl overflow-hidden shadow-lg">
+                        <div class="h-64 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
+                            <i class="fas fa-graduation-cap text-white text-4xl"></i>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-prolio-dark mb-2">Educational Campus</h3>
+                            <p class="text-gray-600 mb-4">Modern educational facility designed to inspire learning through thoughtful spatial design.</p>
+                            <span class="text-prolio-accent font-semibold">Educational • 2021</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-fade">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-prolio-dark mb-6">Client Testimonials</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Hear what our clients say about their experience working with Prolio.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-prolio-gray p-8 rounded-2xl">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-prolio-accent rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-prolio-dark">Sarah Johnson</h4>
+                                <p class="text-gray-600 text-sm">CEO, Tech Innovations</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            "Prolio transformed our vision into reality with their exceptional design expertise. The new office space has significantly improved our team's productivity and morale."
+                        </p>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-prolio-gray p-8 rounded-2xl">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-prolio-accent rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-prolio-dark">Michael Chen</h4>
+                                <p class="text-gray-600 text-sm">Homeowner</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            "Working with Prolio was an incredible experience. They listened to our needs and created a home that perfectly reflects our lifestyle while being environmentally conscious."
+                        </p>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-prolio-gray p-8 rounded-2xl">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 bg-prolio-accent rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-prolio-dark">Emma Rodriguez</h4>
+                                <p class="text-gray-600 text-sm">City Planning Director</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 leading-relaxed mb-4">
+                            "Prolio's approach to urban planning is innovative and thoughtful. Their designs create spaces that truly enhance community life and promote sustainability."
+                        </p>
+                        <div class="flex text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-prolio-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="section-fade">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-prolio-dark mb-6">Get In Touch</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                        Ready to start your next project? We'd love to hear from you and discuss how we can bring your vision to life.
+                    </p>
+                </div>
+                
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <div>
+                        <h3 class="text-2xl font-bold text-prolio-dark mb-6">Contact Information</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-prolio-accent rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-prolio-dark mb-1">Office Address</h4>
+                                    <p class="text-gray-600">123 Design Street, Architecture District<br>Creative City, CC 12345</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-prolio-accent rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-phone text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-prolio-dark mb-1">Phone Number</h4>
+                                    <p class="text-gray-600">+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-prolio-accent rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-envelope text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-prolio-dark mb-1">Email Address</h4>
+                                    <p class="text-gray-600">hello@prolio.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 bg-prolio-accent rounded-xl flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-clock text-white"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-prolio-dark mb-1">Office Hours</h4>
+                                    <p class="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 2:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="font-semibold text-prolio-dark mb-4">Follow Us</h4>
+                            <div class="flex space-x-4">
+                                <a href="#" class="w-10 h-10 bg-prolio-accent rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-colors">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-prolio-accent rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-colors">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-prolio-accent rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-colors">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 bg-prolio-accent rounded-lg flex items-center justify-center text-white hover:bg-blue-700 transition-colors">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-2xl shadow-xl">
+                        <h3 class="text-2xl font-bold text-prolio-dark mb-6">Send us a Message</h3>
+                        
+                        <form id="contact-form" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="firstName" class="block text-sm font-medium text-prolio-dark mb-2">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-prolio-accent focus:border-transparent transition-all">
+                                </div>
+                                <div>
+                                    <label for="lastName" class="block text-sm font-medium text-prolio-dark mb-2">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" required 
+                                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-prolio-accent focus:border-transparent transition-all">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-prolio-dark mb-2">Email Address</label>
+                                <input type="email" id="email" name="email" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-prolio-accent focus:border-transparent transition-all">
+                            </div>
+                            
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-prolio-dark mb-2">Phone Number</label>
+                                <input type="tel" id="phone" name="phone" 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-prolio-accent focus:border-transparent transition-all">
+                            </div>
+                            
+                            <div>
+                                <label for="project" class="block text-sm font-medium text-prolio-dark mb-2">Project Type</label>
+                                <select id="project" name="project" required 
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-prolio-accent focus:border-transparent transition-all">
+                                    <option value="">Select a project type</option>
+                                    <option value="residential">Residential</option>
+                                    <option value="commercial">Commercial</option>
+                                    <option value="cultural">Cultural</option>
+                                    <option value="urban-planning">Urban Planning</option>
+                                    <option value="interior-design">Interior Design</option>
+                                    <option value="consultation">Consultation</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-prolio-dark mb-2">Message</label>
+                                <textarea id="message" name="message" rows="5" required 
+                                          placeholder="Tell us about your project..."
+                                          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-prolio-accent focus:border-transparent transition-all"></textarea>
+                            </div>
+                            
+                            <button type="submit" 
+                                    class="w-full bg-prolio-accent text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-prolio-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Prolio</h3>
+                    <p class="text-gray-300 mb-4">
+                        Creating innovative, sustainable, and beautiful spaces that enhance human experience.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#services" class="hover:text-white transition-colors">Architectural Design</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Urban Planning</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Interior Design</a></li>
+                        <li><a href="#services" class="hover:text-white transition-colors">Sustainable Design</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#portfolio" class="hover:text-white transition-colors">Portfolio</a></li>
+                        <li><a href="#testimonials" class="hover:text-white transition-colors">Testimonials</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>123 Design Street</li>
+                        <li>Creative City, CC 12345</li>
+                        <li>+1 (555) 123-4567</li>
+                        <li>hello@prolio.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 Prolio Architecture Firm. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

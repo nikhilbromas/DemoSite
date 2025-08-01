@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - Prolio Architecture</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'prolio-dark': '#1a1a1a',
+                        'prolio-gray': '#f8f9fa',
+                        'prolio-accent': '#2563eb',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .error-bg {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(26, 26, 26, 0.05) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23e5e7eb" stroke-width="1" opacity="0.3"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+        }
+        .float-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body class="font-inter bg-white">
+    <!-- Navigation -->
+    <nav class="bg-white border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0">
+                    <a href="/" class="text-2xl font-bold text-prolio-dark hover:text-prolio-accent transition-colors">Prolio</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="/" class="text-prolio-dark hover:text-prolio-accent px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="/#about" class="text-prolio-dark hover:text-prolio-accent px-3 py-2 text-sm font-medium transition-colors">About</a>
+                        <a href="/#services" class="text-prolio-dark hover:text-prolio-accent px-3 py-2 text-sm font-medium transition-colors">Services</a>
+                        <a href="/#portfolio" class="text-prolio-dark hover:text-prolio-accent px-3 py-2 text-sm font-medium transition-colors">Portfolio</a>
+                        <a href="/#contact" class="text-prolio-dark hover:text-prolio-accent px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 404 Error Section -->
+    <section class="error-bg min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="max-w-3xl mx-auto">
+                <!-- Animated 404 Number -->
+                <div class="float-animation mb-8">
+                    <h1 class="text-9xl md:text-[12rem] font-bold text-prolio-accent opacity-20 leading-none">404</h1>
+                </div>
+                
+                <!-- Error Message -->
+                <div class="mb-8">
+                    <h2 class="text-4xl md:text-6xl font-bold text-prolio-dark mb-6 leading-tight">
+                        Page Not Found
+                    </h2>
+                    <p class="text-xl md:text-2xl text-gray-600 mb-8 leading-relaxed">
+                        Oops! The page you're looking for seems to have been moved, deleted, or doesn't exist.
+                    </p>
+                </div>
+
+                <!-- Architecture-themed illustration -->
+                <div class="mb-12">
+                    <div class="w-48 h-48 mx-auto bg-gradient-to-br from-prolio-accent to-blue-700 rounded-full flex items-center justify-center mb-6 shadow-xl">
+                        <i class="fas fa-drafting-compass text-white text-6xl"></i>
+                    </div>
+                    <p class="text-gray-500 italic">
+                        "Even the best architects sometimes take a wrong turn..."
+                    </p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+                    <a href="/" class="bg-prolio-accent text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors inline-flex items-center justify-center">
+                        <i class="fas fa-home mr-2"></i>
+                        Back to Home
+                    </a>
+                    <a href="/#portfolio" class="border-2 border-prolio-accent text-prolio-accent px-8 py-4 rounded-lg font-semibold hover:bg-prolio-accent hover:text-white transition-colors inline-flex items-center justify-center">
+                        <i class="fas fa-folder mr-2"></i>
+                        View Portfolio
+                    </a>
+                    <a href="/#contact" class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-semibold hover:bg-gray-50 transition-colors inline-flex items-center justify-center">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Contact Us
+                    </a>
+                </div>
+
+                <!-- Search Suggestions -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 max-w-2xl mx-auto">
+                    <h3 class="text-2xl font-bold text-prolio-dark mb-6">What were you looking for?</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="text-left">
+                            <h4 class="font-semibold text-prolio-dark mb-3">Popular Pages</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li><a href="/#about" class="hover:text-prolio-accent transition-colors">About Prolio</a></li>
+                                <li><a href="/#services" class="hover:text-prolio-accent transition-colors">Our Services</a></li>
+                                <li><a href="/#portfolio" class="hover:text-prolio-accent transition-colors">Project Portfolio</a></li>
+                                <li><a href="/#testimonials" class="hover:text-prolio-accent transition-colors">Client Reviews</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="text-left">
+                            <h4 class="font-semibold text-prolio-dark mb-3">Quick Actions</h4>
+                            <ul class="space-y-2 text-gray-600">
+                                <li><a href="/#contact" class="hover:text-prolio-accent transition-colors">Start a Project</a></li>
+                                <li><a href="/#services" class="hover:text-prolio-accent transition-colors">Request Consultation</a></li>
+                                <li><a href="/#portfolio" class="hover:text-prolio-accent transition-colors">View Our Work</a></li>
+                                <li><a href="/#about" class="hover:text-prolio-accent transition-colors">Learn About Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Search Box -->
+                <div class="mt-8 max-w-md mx-auto">
+                    <div class="relative">
+                        <input type="text" 
+                               placeholder="Search our website..." 
+                               class="w-full px-4 py-3 pr-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-prolio-accent focus:border-transparent transition-all">
+                        <button class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-prolio-accent transition-colors">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-prolio-dark text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Prolio</h3>
+                    <p class="text-gray-300 mb-4">
+                        Creating innovative, sustainable, and beautiful spaces that enhance human experience.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-white transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="/" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="/#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="/#services" class="hover:text-white transition-colors">Services</a></li>
+                        <li><a href="/#portfolio" class="hover:text-white transition-colors">Portfolio</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="/#services" class="hover:text-white transition-colors">Architectural Design</a></li>
+                        <li><a href="/#services" class="hover:text-white transition-colors">Urban Planning</a></li>
+                        <li><a href="/#services" class="hover:text-white transition-colors">Interior Design</a></li>
+                        <li><a href="/#services" class="hover:text-white transition-colors">Consultation</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>123 Design Street</li>
+                        <li>Creative City, CC 12345</li>
+                        <li>+1 (555) 123-4567</li>
+                        <li>hello@prolio.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+                <p>&copy; 2024 Prolio Architecture Firm. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple search functionality for the 404 page
+        document.querySelector('input[type="text"]').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const searchTerm = this.value.toLowerCase();
+                
+                // Simple search logic - redirect to relevant sections
+                if (searchTerm.includes('about') || searchTerm.includes('company') || searchTerm.includes('team')) {
+                    window.location.href = '/#about';
+                } else if (searchTerm.includes('service') || searchTerm.includes('design') || searchTerm.includes('architecture')) {
+                    window.location.href = '/#services';
+                } else if (searchTerm.includes('portfolio') || searchTerm.includes('project') || searchTerm.includes('work')) {
+                    window.location.href = '/#portfolio';
+                } else if (searchTerm.includes('contact') || searchTerm.includes('phone') || searchTerm.includes('email')) {
+                    window.location.href = '/#contact';
+                } else if (searchTerm.includes('testimonial') || searchTerm.includes('review') || searchTerm.includes('client')) {
+                    window.location.href = '/#testimonials';
+                } else {
+                    // Default to home page
+                    window.location.href = '/';
+                }
+            }
+        });
+    </script>
+</body>
+</html>
