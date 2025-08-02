@@ -359,21 +359,63 @@
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .shape { 
+                opacity: 0.35; 
+                transform: scale(0.85);
+                animation-duration: 8s;
+            }
+            .parallax-shape { 
                 opacity: 0.2; 
                 transform: scale(0.8);
             }
-            .parallax-shape { 
-                opacity: 0.1; 
-                transform: scale(0.7);
+            .featured-shape {
+                opacity: 0.5;
+                transform: scale(0.9);
             }
             .service-card::before { 
-                opacity: 0.5;
+                opacity: 0.6;
                 animation-duration: 6s; 
             }
             
-            /* Simplify animations for better mobile performance */
-            .shape {
-                animation-duration: 10s;
+            /* Enhanced mobile visibility for background shapes */
+            .absolute .shape {
+                opacity: 0.3 !important;
+            }
+            
+            /* Ensure geometric overlays are visible on mobile */
+            .geometric-overlay {
+                opacity: 0.8;
+            }
+            
+            .portfolio-item:hover .geometric-overlay {
+                opacity: 1;
+            }
+            
+            /* Mobile touch interactions */
+            .portfolio-item:active .geometric-overlay {
+                opacity: 1;
+                transform: scale(1);
+            }
+            
+            .service-card:active::before {
+                opacity: 0.8;
+            }
+            
+            /* Improved mobile shape visibility */
+            .shape.triangle {
+                border-bottom-color: rgba(37, 99, 235, 0.8);
+            }
+            
+            .shape.star {
+                background: linear-gradient(45deg, rgba(37, 99, 235, 0.7), rgba(96, 165, 250, 0.7));
+            }
+            
+            .shape.diamond {
+                background: linear-gradient(135deg, rgba(37, 99, 235, 0.7), rgba(59, 130, 246, 0.7));
+            }
+            
+            .shape.circle {
+                border-color: rgba(37, 99, 235, 0.8);
+                background: rgba(37, 99, 235, 0.2);
             }
         }
         

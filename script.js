@@ -298,31 +298,63 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Enhanced geometric animations
 function initGeometricAnimations() {
+    const isMobile = window.innerWidth <= 768;
+    
     // Add dynamic animation delays to floating shapes
     const shapes = document.querySelectorAll('.shape');
     shapes.forEach((shape, index) => {
         const randomDelay = Math.random() * 3;
-        const randomDuration = 6 + Math.random() * 4;
+        const randomDuration = isMobile ? 8 + Math.random() * 4 : 6 + Math.random() * 4;
         shape.style.animationDelay = `${randomDelay}s`;
         shape.style.animationDuration = `${randomDuration}s`;
         
-        // Add random movement on mouse enter
-        shape.addEventListener('mouseenter', () => {
-            shape.style.transform = `translateY(-10px) rotate(${Math.random() * 360}deg)`;
-        });
+        // Enhanced mobile visibility
+        if (isMobile) {
+            shape.style.opacity = '0.4';
+            shape.style.filter = 'drop-shadow(0 2px 6px rgba(37, 99, 235, 0.4))';
+        }
         
-        shape.addEventListener('mouseleave', () => {
+        // Add interaction events (both mouse and touch)
+        const addInteraction = () => {
+            shape.style.transform = `translateY(-10px) rotate(${Math.random() * 360}deg)`;
+            shape.style.opacity = isMobile ? '0.6' : '0.8';
+        };
+        
+        const removeInteraction = () => {
             shape.style.transform = '';
-        });
+            shape.style.opacity = isMobile ? '0.4' : '0.4';
+        };
+        
+        // Mouse events for desktop
+        shape.addEventListener('mouseenter', addInteraction);
+        shape.addEventListener('mouseleave', removeInteraction);
+        
+        // Touch events for mobile
+        shape.addEventListener('touchstart', addInteraction);
+        shape.addEventListener('touchend', removeInteraction);
     });
     
     // Enhanced parallax shapes
     const parallaxShapes = document.querySelectorAll('.parallax-shape');
     parallaxShapes.forEach((shape, index) => {
         const randomDelay = Math.random() * 2;
-        const randomDuration = 8 + Math.random() * 4;
+        const randomDuration = isMobile ? 10 + Math.random() * 4 : 8 + Math.random() * 4;
         shape.style.animationDelay = `${randomDelay}s`;
         shape.style.animationDuration = `${randomDuration}s`;
+        
+        // Enhanced mobile visibility for parallax shapes
+        if (isMobile) {
+            shape.style.opacity = '0.25';
+        }
+    });
+    
+    // Featured shapes mobile enhancement
+    const featuredShapes = document.querySelectorAll('.featured-shape');
+    featuredShapes.forEach(shape => {
+        if (isMobile) {
+            shape.style.opacity = '0.5';
+            shape.style.filter = 'drop-shadow(0 4px 12px rgba(37, 99, 235, 0.5))';
+        }
     });
 }
 
@@ -406,24 +438,25 @@ function initCursorEffects() {
 // Enhanced portfolio effects with geometric overlays
 function initEnhancedPortfolioEffects() {
     const portfolioItems = document.querySelectorAll('.portfolio-item');
+    const isMobile = window.innerWidth <= 768;
     
     portfolioItems.forEach(item => {
         const overlay = item.querySelector('.geometric-overlay');
         
-        item.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-15px) scale(1.02)';
+        const activateOverlay = function() {
+            this.style.transform = isMobile ? 'translateY(-8px) scale(1.01)' : 'translateY(-15px) scale(1.02)';
             
             // Animate overlay with geometric pattern
             if (overlay) {
-                overlay.style.opacity = '1';
+                overlay.style.opacity = isMobile ? '0.9' : '1';
                 overlay.style.transform = 'scale(1)';
                 
                 // Create pulsing geometric shapes in overlay
                 createOverlayShapes(overlay);
             }
-        });
+        };
         
-        item.addEventListener('mouseleave', function() {
+        const deactivateOverlay = function() {
             this.style.transform = '';
             
             if (overlay) {
@@ -433,7 +466,33 @@ function initEnhancedPortfolioEffects() {
                 // Clear overlay shapes
                 clearOverlayShapes(overlay);
             }
-        });
+        };
+        
+        // Mouse events for desktop
+        item.addEventListener('mouseenter', activateOverlay);
+        item.addEventListener('mouseleave', deactivateOverlay);
+        
+        // Touch events for mobile
+        if (isMobile) {
+            let touchTimeout;
+            
+            item.addEventListener('touchstart', function(e) {
+                clearTimeout(touchTimeout);
+                activateOverlay.call(this);
+            });
+            
+            item.addEventListener('touchend', function(e) {
+                touchTimeout = setTimeout(() => {
+                    deactivateOverlay.call(this);
+                }, 2000); // Keep overlay visible for 2 seconds on mobile
+            });
+            
+            // Handle touch cancel
+            item.addEventListener('touchcancel', function(e) {
+                clearTimeout(touchTimeout);
+                deactivateOverlay.call(this);
+            });
+        }
     });
 }
 
@@ -617,6 +676,8 @@ document.head.appendChild(tempShapeStyles);
 function updateShapeCount() {
     const shapes = document.querySelectorAll('.shape, .parallax-shape, .featured-shape');
     const countElement = document.getElementById('shapes-count');
+    const isMobile = window.innerWidth <= 768;
+    
     if (countElement) {
         countElement.textContent = shapes.length;
     }
@@ -629,12 +690,80 @@ function updateShapeCount() {
         if (window.location.search.includes('debug')) {
             shape.style.border = '1px solid rgba(255, 0, 0, 0.3)';
         }
+        
+        // Ensure mobile visibility
+        if (isMobile && !shape.style.opacity) {
+            if (shape.classList.contains('featured-shape')) {
+                shape.style.opacity = '0.5';
+            } else if (shape.classList.contains('parallax-shape')) {
+                shape.style.opacity = '0.25';
+            } else {
+                shape.style.opacity = '0.4';
+            }
+        }
     });
+    
+    // Add mobile-specific style adjustments
+    if (isMobile) {
+        const style = document.createElement('style');
+        style.id = 'mobile-shape-fix';
+        style.textContent = `
+            .shape {
+                filter: drop-shadow(0 2px 6px rgba(37, 99, 235, 0.4)) !important;
+            }
+            .featured-shape {
+                filter: drop-shadow(0 4px 12px rgba(37, 99, 235, 0.5)) !important;
+            }
+        `;
+        
+        // Only add if not already added
+        if (!document.getElementById('mobile-shape-fix')) {
+            document.head.appendChild(style);
+        }
+    }
 }
 
-// Initialize shape counting
+// Mobile-specific geometric enhancements
+function initMobileGeometricEnhancements() {
+    const isMobile = window.innerWidth <= 768;
+    
+    if (isMobile) {
+        // Enhance touch interactions for all shapes
+        const allShapes = document.querySelectorAll('.shape, .parallax-shape, .featured-shape');
+        allShapes.forEach(shape => {
+            shape.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                this.style.opacity = '0.7';
+                this.style.transform = 'scale(1.1)';
+            });
+            
+            shape.addEventListener('touchend', function(e) {
+                setTimeout(() => {
+                    this.style.opacity = '';
+                    this.style.transform = '';
+                }, 300);
+            });
+        });
+        
+        // Add mobile-specific visibility enhancements
+        setTimeout(() => {
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach(shape => {
+                const currentOpacity = parseFloat(getComputedStyle(shape).opacity);
+                if (currentOpacity < 0.3) {
+                    shape.style.opacity = '0.35';
+                }
+            });
+        }, 500);
+    }
+}
+
+// Initialize shape counting and mobile enhancements
 document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(updateShapeCount, 1000); // Delay to ensure all elements are rendered
+    setTimeout(() => {
+        updateShapeCount();
+        initMobileGeometricEnhancements();
+    }, 1000); // Delay to ensure all elements are rendered
 });
 
 // Handle window resize
@@ -643,6 +772,12 @@ window.addEventListener('resize', () => {
     if (window.innerWidth >= 768) {
         mobileMenu.classList.add('hidden');
     }
+    
+    // Recalculate mobile enhancements on resize
+    setTimeout(() => {
+        updateShapeCount();
+        initMobileGeometricEnhancements();
+    }, 300);
 });
 
 // Preloader (optional)
