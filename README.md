@@ -1,4 +1,4 @@
-# Prolio - Modern Architecture Firm Website
+ # Prolio - Modern Architecture Firm Website
 
 A modern, responsive, and visually stunning static website for Prolio architecture firm, built with HTML, Tailwind CSS, and JavaScript.
 
@@ -7,8 +7,13 @@ A modern, responsive, and visually stunning static website for Prolio architectu
 - **Modern Design**: Clean, minimalist design with professional typography
 - **Fully Responsive**: Optimized for desktop, tablet, and mobile devices
 - **Performance Optimized**: Fast loading with optimized assets
-- **Interactive Elements**: Smooth scrolling, animations, and interactive portfolio
-- **Contact Form**: Functional contact form with validation
+- **Interactive Geometric Elements**: Animated triangles, stars, circles, and diamonds
+- **Advanced Hover Effects**: Geometric overlays and dynamic shape animations
+- **Smart Cursor Interactions**: Mouse-following effects and cursor-responsive elements
+- **Scroll-Triggered Animations**: Dynamic shapes appear during fast scrolling
+- **Enhanced Portfolio Gallery**: Geometric overlays with pulsing animations on hover
+- **Service Card Animations**: Rotating conic gradients and floating corner shapes
+- **Contact Form**: Functional contact form with geometric button effects
 - **SEO Friendly**: Semantic HTML structure and meta tags
 - **GitHub Pages Ready**: Deploy-ready static website
 
@@ -85,12 +90,30 @@ prolio-website/
 - **Layout**: CSS Grid and Flexbox for responsive design
 - **Animations**: Smooth transitions and scroll-triggered animations
 
+### Interactive Geometric Elements
+- **Floating Background Shapes**: Animated triangles, stars, circles, and diamonds throughout all sections
+- **Dynamic Animation Timing**: Randomized delays and durations for natural movement
+- **Mouse Interaction**: Shapes respond to hover with rotation and scaling effects
+- **Scroll-Based Triggers**: Temporary shapes appear during fast scrolling for dynamic feedback
+
+### Advanced Hover Effects
+- **Portfolio Overlays**: Geometric overlays with pulsing circle animations and cursor-following gradients
+- **Service Card Effects**: Rotating conic gradient borders with floating corner elements
+- **Button Animations**: Geometric sweep effects on call-to-action buttons
+- **Navigation Links**: Radial gradient expansion effects on hover
+
+### Enhanced User Experience
+- **Cursor Trail Effects**: Portfolio items respond to mouse position with dynamic gradients
+- **Progressive Animations**: Elements animate based on scroll visibility ratio
+- **Micro-interactions**: Subtle shape animations triggered by section visibility
+- **Performance Optimized**: Reduced motion support and mobile-friendly effects
+
 ### Interactive Components
-- **Navigation**: Smooth scrolling with active section highlighting
-- **Mobile Menu**: Responsive hamburger menu
-- **Portfolio**: Hover effects and image gallery
-- **Contact Form**: Client-side validation and feedback
-- **Scroll Animations**: Elements fade in as user scrolls
+- **Navigation**: Smooth scrolling with active section highlighting and geometric hover effects
+- **Mobile Menu**: Responsive hamburger menu with animated transitions
+- **Portfolio**: Enhanced hover effects with geometric overlays and animated shapes
+- **Contact Form**: Client-side validation with geometric button animations
+- **Scroll Animations**: Progressive element reveals with accompanying shape triggers
 
 ### Performance Optimizations
 - **Lazy Loading**: Images load as needed

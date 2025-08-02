@@ -58,6 +58,8 @@
         .hero-bg {
             background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(26, 26, 26, 0.8) 100%),
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M 50 0 L 0 0 0 50" fill="none" stroke="%23e5e7eb" stroke-width="1" opacity="0.5"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            position: relative;
+            overflow: hidden;
         }
         .glass-effect {
             backdrop-filter: blur(10px);
@@ -65,10 +67,16 @@
         }
         .portfolio-item {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         .portfolio-item:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .portfolio-item:hover .geometric-overlay {
+            opacity: 1;
+            transform: scale(1);
         }
         .section-fade {
             opacity: 0;
@@ -78,6 +86,342 @@
         .section-fade.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+        
+        /* Animated Background Elements */
+        .floating-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .shape {
+            position: absolute;
+            opacity: 0.4;
+            animation: float 8s infinite ease-in-out;
+            filter: drop-shadow(0 4px 8px rgba(37, 99, 235, 0.3));
+            transition: all 0.3s ease;
+        }
+        
+        .shape:hover {
+            opacity: 0.8;
+            transform: scale(1.2);
+            filter: drop-shadow(0 6px 12px rgba(37, 99, 235, 0.5));
+        }
+        
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-bottom: 35px solid #2563eb;
+            animation: triangle-float 6s infinite ease-in-out;
+        }
+        
+        .star {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(45deg, #2563eb, #60a5fa);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: star-twinkle 4s infinite ease-in-out;
+        }
+        
+        .circle {
+            width: 18px;
+            height: 18px;
+            border: 3px solid #2563eb;
+            border-radius: 50%;
+            background: rgba(37, 99, 235, 0.1);
+            animation: circle-pulse 5s infinite ease-in-out;
+        }
+        
+        .diamond {
+            width: 22px;
+            height: 22px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            transform: rotate(45deg);
+            animation: diamond-rotate 7s infinite linear;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(-10px) rotate(180deg); }
+            75% { transform: translateY(-30px) rotate(270deg); }
+        }
+        
+        @keyframes triangle-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.4; }
+            50% { transform: translateY(-25px) rotate(180deg); opacity: 0.7; }
+        }
+        
+        @keyframes star-twinkle {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.4; }
+            50% { transform: scale(1.3) rotate(180deg); opacity: 0.8; }
+        }
+        
+        @keyframes circle-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.4; }
+            50% { transform: scale(1.3); opacity: 0.7; }
+        }
+        
+        @keyframes diamond-rotate {
+            0% { transform: rotate(45deg); opacity: 0.4; }
+            50% { opacity: 0.7; }
+            100% { transform: rotate(405deg); opacity: 0.4; }
+        }
+        
+        /* Geometric Hover Overlays */
+        .geometric-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(37, 99, 235, 0.1), rgba(37, 99, 235, 0.2));
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .geometric-overlay::before {
+            content: '';
+            width: 50px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: overlay-pulse 2s infinite ease-in-out;
+        }
+        
+        @keyframes overlay-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        /* Service Card Hover Effects */
+        .service-card {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(37, 99, 235, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            animation: rotate 4s linear infinite;
+        }
+        
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Interactive Navigation Effects */
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.2), transparent);
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+        
+        .nav-link:hover::before {
+            width: 100px;
+            height: 100px;
+        }
+        
+        /* Testimonial Card Geometric Effects */
+        .testimonial-card {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .testimonial-card::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(45deg, #2563eb, #60a5fa);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .testimonial-card:hover::after {
+            opacity: 1;
+        }
+        
+        /* Button Hover Geometric Effects */
+        .btn-geometric {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-geometric::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+        
+        .btn-geometric:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Parallax Geometric Elements */
+        .parallax-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .parallax-shape {
+            position: absolute;
+            opacity: 0.15;
+            filter: drop-shadow(0 4px 8px rgba(37, 99, 235, 0.2));
+        }
+        
+        .parallax-triangle {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, rgba(37, 99, 235, 0.6), rgba(37, 99, 235, 0.2));
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: parallax-float 10s infinite ease-in-out;
+        }
+        
+        .parallax-hexagon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #2563eb, #60a5fa);
+            clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+            animation: parallax-rotate 8s infinite linear;
+        }
+        
+        @keyframes parallax-float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-30px) translateX(20px); }
+            50% { transform: translateY(-60px) translateX(-10px); }
+            75% { transform: translateY(-30px) translateX(-20px); }
+        }
+        
+        @keyframes parallax-rotate {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .shape { 
+                opacity: 0.2; 
+                transform: scale(0.8);
+            }
+            .parallax-shape { 
+                opacity: 0.1; 
+                transform: scale(0.7);
+            }
+            .service-card::before { 
+                opacity: 0.5;
+                animation-duration: 6s; 
+            }
+            
+            /* Simplify animations for better mobile performance */
+            .shape {
+                animation-duration: 10s;
+            }
+        }
+        
+        /* High contrast mode for better visibility */
+        @media (prefers-contrast: high) {
+            .shape {
+                opacity: 0.8;
+                filter: contrast(1.5);
+            }
+            .parallax-shape {
+                opacity: 0.6;
+            }
+        }
+        
+        /* Featured geometric elements - larger and more prominent */
+        .featured-shape {
+            position: absolute;
+            opacity: 0.6;
+            filter: drop-shadow(0 8px 16px rgba(37, 99, 235, 0.4));
+            transition: all 0.3s ease;
+            animation: featured-float 12s infinite ease-in-out;
+        }
+        
+        .featured-shape:hover {
+            opacity: 0.9;
+            transform: scale(1.3);
+            filter: drop-shadow(0 12px 24px rgba(37, 99, 235, 0.6));
+        }
+        
+        .featured-star {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #2563eb, #60a5fa, #3b82f6);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+        
+        .featured-hexagon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2563eb, #60a5fa);
+            clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+        }
+        
+        @keyframes featured-float {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+            25% { transform: translateY(-30px) rotate(90deg) scale(1.1); }
+            50% { transform: translateY(-20px) rotate(180deg) scale(1.05); }
+            75% { transform: translateY(-40px) rotate(270deg) scale(1.1); }
         }
     </style>
 </head>
@@ -121,7 +465,40 @@
 
     <!-- Home Section -->
     <section id="home" class="hero-bg min-h-screen flex items-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <!-- Floating Geometric Shapes -->
+        <div class="floating-shapes">
+            <div class="shape triangle" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="shape star" style="top: 30%; right: 15%; animation-delay: 1s;"></div>
+            <div class="shape circle" style="top: 60%; left: 20%; animation-delay: 2s;"></div>
+            <div class="shape diamond" style="top: 15%; right: 30%; animation-delay: 0.5s;"></div>
+            <div class="shape triangle" style="bottom: 20%; right: 10%; animation-delay: 1.5s;"></div>
+            <div class="shape star" style="bottom: 40%; left: 15%; animation-delay: 2.5s;"></div>
+            <div class="shape circle" style="top: 80%; right: 25%; animation-delay: 3s;"></div>
+            <div class="shape diamond" style="bottom: 30%; left: 30%; animation-delay: 0.8s;"></div>
+            
+            <!-- Additional prominent geometric elements -->
+            <div class="shape triangle" style="top: 45%; left: 5%; animation-delay: 0.3s;"></div>
+            <div class="shape star" style="top: 75%; right: 35%; animation-delay: 1.8s;"></div>
+            <div class="shape circle" style="top: 25%; left: 60%; animation-delay: 2.2s;"></div>
+            <div class="shape diamond" style="bottom: 60%; right: 5%; animation-delay: 1.2s;"></div>
+            <div class="shape triangle" style="top: 10%; left: 40%; animation-delay: 2.8s;"></div>
+            <div class="shape star" style="bottom: 15%; left: 70%; animation-delay: 0.7s;"></div>
+        </div>
+        
+        <!-- Parallax Background Shapes -->
+        <div class="parallax-shapes">
+            <div class="parallax-shape parallax-triangle" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
+            <div class="parallax-shape parallax-hexagon" style="top: 70%; right: 8%; animation-delay: 2s;"></div>
+            <div class="parallax-shape parallax-triangle" style="bottom: 15%; left: 60%; animation-delay: 4s;"></div>
+        </div>
+        
+        <!-- Featured Prominent Geometric Elements -->
+        <div class="absolute inset-0 pointer-events-none z-5">
+            <div class="featured-shape featured-star" style="top: 35%; right: 12%; animation-delay: 1s;"></div>
+            <div class="featured-shape featured-hexagon" style="bottom: 25%; left: 8%; animation-delay: 3s;"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <div class="section-fade">
                 <h1 class="text-5xl md:text-7xl font-bold text-prolio-dark mb-6 leading-tight">
                     Crafting Spaces<br>
@@ -131,10 +508,10 @@
                     Modern architecture firm dedicated to creating innovative, sustainable, and beautiful spaces that enhance human experience.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#portfolio" class="bg-prolio-accent text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                    <a href="#portfolio" class="btn-geometric bg-prolio-accent text-white px-8 py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
                         View Our Work
                     </a>
-                    <a href="#contact" class="border-2 border-prolio-accent text-prolio-accent px-8 py-4 rounded-lg font-semibold hover:bg-prolio-accent hover:text-white transition-colors">
+                    <a href="#contact" class="btn-geometric border-2 border-prolio-accent text-prolio-accent px-8 py-4 rounded-lg font-semibold hover:bg-prolio-accent hover:text-white transition-colors">
                         Start a Project
                     </a>
                 </div>
@@ -143,8 +520,16 @@
     </section>
 
     <!-- About Us Section -->
-    <section id="about" class="py-20 bg-prolio-gray">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" class="py-20 bg-prolio-gray relative overflow-hidden">
+        <!-- Subtle Background Shapes -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="shape circle" style="top: 10%; right: 10%; animation-delay: 1s; opacity: 0.25;"></div>
+            <div class="shape triangle" style="bottom: 20%; left: 15%; animation-delay: 2s; opacity: 0.25;"></div>
+            <div class="shape diamond" style="top: 60%; right: 20%; animation-delay: 3s; opacity: 0.25;"></div>
+            <div class="shape star" style="top: 30%; left: 25%; animation-delay: 1.5s; opacity: 0.25;"></div>
+            <div class="shape circle" style="bottom: 40%; right: 30%; animation-delay: 0.8s; opacity: 0.25;"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="section-fade">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl md:text-5xl font-bold text-prolio-dark mb-6">About Prolio</h2>
@@ -209,62 +594,62 @@
                 </div>
                 
                 <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
-                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6">
+                    <div class="service-card bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6 relative z-10">
                             <i class="fas fa-drafting-compass text-white text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-prolio-dark mb-4">Architectural Design</h3>
-                        <p class="text-gray-600 leading-relaxed">
+                        <h3 class="text-2xl font-bold text-prolio-dark mb-4 relative z-10">Architectural Design</h3>
+                        <p class="text-gray-600 leading-relaxed relative z-10">
                             Complete architectural design services from initial concept through detailed construction drawings, ensuring every detail is perfectly executed.
                         </p>
                     </div>
                     
-                    <div class="bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
-                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6">
+                    <div class="service-card bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6 relative z-10">
                             <i class="fas fa-city text-white text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-prolio-dark mb-4">Urban Planning</h3>
-                        <p class="text-gray-600 leading-relaxed">
+                        <h3 class="text-2xl font-bold text-prolio-dark mb-4 relative z-10">Urban Planning</h3>
+                        <p class="text-gray-600 leading-relaxed relative z-10">
                             Strategic urban planning solutions that create sustainable, livable communities while respecting local culture and environment.
                         </p>
                     </div>
                     
-                    <div class="bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
-                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6">
+                    <div class="service-card bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6 relative z-10">
                             <i class="fas fa-home text-white text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-prolio-dark mb-4">Interior Design</h3>
-                        <p class="text-gray-600 leading-relaxed">
+                        <h3 class="text-2xl font-bold text-prolio-dark mb-4 relative z-10">Interior Design</h3>
+                        <p class="text-gray-600 leading-relaxed relative z-10">
                             Comprehensive interior design services that seamlessly integrate with architectural vision to create cohesive, beautiful spaces.
                         </p>
                     </div>
                     
-                    <div class="bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
-                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6">
+                    <div class="service-card bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6 relative z-10">
                             <i class="fas fa-leaf text-white text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-prolio-dark mb-4">Sustainable Design</h3>
-                        <p class="text-gray-600 leading-relaxed">
+                        <h3 class="text-2xl font-bold text-prolio-dark mb-4 relative z-10">Sustainable Design</h3>
+                        <p class="text-gray-600 leading-relaxed relative z-10">
                             Eco-friendly design solutions that minimize environmental impact while maximizing energy efficiency and occupant comfort.
                         </p>
                     </div>
                     
-                    <div class="bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
-                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6">
+                    <div class="service-card bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6 relative z-10">
                             <i class="fas fa-cogs text-white text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-prolio-dark mb-4">Project Management</h3>
-                        <p class="text-gray-600 leading-relaxed">
+                        <h3 class="text-2xl font-bold text-prolio-dark mb-4 relative z-10">Project Management</h3>
+                        <p class="text-gray-600 leading-relaxed relative z-10">
                             End-to-end project management ensuring seamless coordination, timely delivery, and budget adherence throughout construction.
                         </p>
                     </div>
                     
-                    <div class="bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
-                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6">
+                    <div class="service-card bg-prolio-gray p-8 rounded-2xl hover:shadow-xl transition-shadow">
+                        <div class="w-16 h-16 bg-prolio-accent rounded-xl flex items-center justify-center mb-6 relative z-10">
                             <i class="fas fa-search text-white text-2xl"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-prolio-dark mb-4">Consultation</h3>
-                        <p class="text-gray-600 leading-relaxed">
+                        <h3 class="text-2xl font-bold text-prolio-dark mb-4 relative z-10">Consultation</h3>
+                        <p class="text-gray-600 leading-relaxed relative z-10">
                             Expert architectural consultation services to help you make informed decisions about your project's design and development.
                         </p>
                     </div>
@@ -274,8 +659,16 @@
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="py-20 bg-prolio-gray">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="portfolio" class="py-20 bg-prolio-gray relative overflow-hidden">
+        <!-- Subtle Background Shapes -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="shape star" style="top: 15%; left: 5%; animation-delay: 0.5s; opacity: 0.25;"></div>
+            <div class="shape triangle" style="top: 70%; right: 8%; animation-delay: 1.5s; opacity: 0.25;"></div>
+            <div class="shape circle" style="bottom: 30%; left: 20%; animation-delay: 2.5s; opacity: 0.25;"></div>
+            <div class="shape diamond" style="top: 40%; right: 15%; animation-delay: 1.2s; opacity: 0.25;"></div>
+            <div class="shape star" style="bottom: 10%; right: 25%; animation-delay: 2.8s; opacity: 0.25;"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="section-fade">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl md:text-5xl font-bold text-prolio-dark mb-6">Our Portfolio</h2>
@@ -286,8 +679,9 @@
                 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="portfolio-item bg-white rounded-2xl overflow-hidden shadow-lg">
-                        <div class="h-64 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center">
-                            <i class="fas fa-building text-white text-4xl"></i>
+                        <div class="h-64 bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center relative">
+                            <div class="geometric-overlay"></div>
+                            <i class="fas fa-building text-white text-4xl relative z-10"></i>
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-prolio-dark mb-2">Modern Office Complex</h3>
@@ -297,8 +691,9 @@
                     </div>
                     
                     <div class="portfolio-item bg-white rounded-2xl overflow-hidden shadow-lg">
-                        <div class="h-64 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center">
-                            <i class="fas fa-home text-white text-4xl"></i>
+                        <div class="h-64 bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center relative">
+                            <div class="geometric-overlay"></div>
+                            <i class="fas fa-home text-white text-4xl relative z-10"></i>
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-prolio-dark mb-2">Luxury Residential</h3>
@@ -308,8 +703,9 @@
                     </div>
                     
                     <div class="portfolio-item bg-white rounded-2xl overflow-hidden shadow-lg">
-                        <div class="h-64 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
-                            <i class="fas fa-university text-white text-4xl"></i>
+                        <div class="h-64 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center relative">
+                            <div class="geometric-overlay"></div>
+                            <i class="fas fa-university text-white text-4xl relative z-10"></i>
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-prolio-dark mb-2">Cultural Center</h3>
@@ -319,8 +715,9 @@
                     </div>
                     
                     <div class="portfolio-item bg-white rounded-2xl overflow-hidden shadow-lg">
-                        <div class="h-64 bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center">
-                            <i class="fas fa-shopping-bag text-white text-4xl"></i>
+                        <div class="h-64 bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center relative">
+                            <div class="geometric-overlay"></div>
+                            <i class="fas fa-shopping-bag text-white text-4xl relative z-10"></i>
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-prolio-dark mb-2">Retail Plaza</h3>
@@ -330,8 +727,9 @@
                     </div>
                     
                     <div class="portfolio-item bg-white rounded-2xl overflow-hidden shadow-lg">
-                        <div class="h-64 bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center">
-                            <i class="fas fa-tree text-white text-4xl"></i>
+                        <div class="h-64 bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center relative">
+                            <div class="geometric-overlay"></div>
+                            <i class="fas fa-tree text-white text-4xl relative z-10"></i>
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-prolio-dark mb-2">Eco-Resort</h3>
@@ -341,8 +739,9 @@
                     </div>
                     
                     <div class="portfolio-item bg-white rounded-2xl overflow-hidden shadow-lg">
-                        <div class="h-64 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
-                            <i class="fas fa-graduation-cap text-white text-4xl"></i>
+                        <div class="h-64 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center relative">
+                            <div class="geometric-overlay"></div>
+                            <i class="fas fa-graduation-cap text-white text-4xl relative z-10"></i>
                         </div>
                         <div class="p-6">
                             <h3 class="text-xl font-bold text-prolio-dark mb-2">Educational Campus</h3>
@@ -367,7 +766,7 @@
                 </div>
                 
                 <div class="grid md:grid-cols-3 gap-8">
-                    <div class="bg-prolio-gray p-8 rounded-2xl">
+                    <div class="testimonial-card bg-prolio-gray p-8 rounded-2xl">
                         <div class="flex items-center mb-6">
                             <div class="w-12 h-12 bg-prolio-accent rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-user text-white"></i>
@@ -389,7 +788,7 @@
                         </div>
                     </div>
                     
-                    <div class="bg-prolio-gray p-8 rounded-2xl">
+                    <div class="testimonial-card bg-prolio-gray p-8 rounded-2xl">
                         <div class="flex items-center mb-6">
                             <div class="w-12 h-12 bg-prolio-accent rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-user text-white"></i>
@@ -411,7 +810,7 @@
                         </div>
                     </div>
                     
-                    <div class="bg-prolio-gray p-8 rounded-2xl">
+                    <div class="testimonial-card bg-prolio-gray p-8 rounded-2xl">
                         <div class="flex items-center mb-6">
                             <div class="w-12 h-12 bg-prolio-accent rounded-full flex items-center justify-center mr-4">
                                 <i class="fas fa-user text-white"></i>
@@ -438,8 +837,16 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-prolio-gray">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" class="py-20 bg-prolio-gray relative overflow-hidden">
+        <!-- Subtle Background Shapes -->
+        <div class="absolute inset-0 pointer-events-none">
+            <div class="shape diamond" style="top: 20%; left: 10%; animation-delay: 1s; opacity: 0.25;"></div>
+            <div class="shape star" style="bottom: 25%; right: 15%; animation-delay: 2s; opacity: 0.25;"></div>
+            <div class="shape triangle" style="top: 65%; left: 80%; animation-delay: 0.8s; opacity: 0.25;"></div>
+            <div class="shape circle" style="top: 45%; right: 5%; animation-delay: 1.5s; opacity: 0.25;"></div>
+            <div class="shape diamond" style="bottom: 10%; left: 60%; animation-delay: 2.5s; opacity: 0.25;"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="section-fade">
                 <div class="text-center mb-16">
                     <h2 class="text-4xl md:text-5xl font-bold text-prolio-dark mb-6">Get In Touch</h2>
@@ -564,7 +971,7 @@
                             </div>
                             
                             <button type="submit" 
-                                    class="w-full bg-prolio-accent text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
+                                    class="btn-geometric w-full bg-prolio-accent text-white py-4 rounded-lg font-semibold hover:bg-blue-700 transition-colors">
                                 Send Message
                             </button>
                         </form>
@@ -632,6 +1039,10 @@
             
             <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
                 <p>&copy; 2024 Prolio Architecture Firm. All rights reserved.</p>
+                <!-- Geometric Elements Status Indicator -->
+                <div class="mt-2 text-xs opacity-50" id="shapes-status">
+                    <span id="shapes-count">0</span> geometric elements active
+                </div>
             </div>
         </div>
     </footer>
