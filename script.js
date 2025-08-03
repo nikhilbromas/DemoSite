@@ -63,11 +63,11 @@ function animateOnScroll() {
         if (elementTop < window.innerHeight - elementVisible) {
             element.classList.add('visible');
             
-            // Mobile-specific fade enhancement
+            // Disable fade animations on mobile - show immediately
             if (isMobile) {
-                element.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
                 element.style.opacity = '1';
                 element.style.transform = 'translateY(0)';
+                element.style.transition = 'none';
             }
         }
     });
@@ -199,29 +199,26 @@ function initLoadingAnimations() {
         if (heroSection) {
             heroSection.classList.add('visible');
             
-            // Mobile-specific immediate visibility
+            // Disable fade animations on mobile - show immediately
             if (isMobile) {
-                heroSection.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
                 heroSection.style.opacity = '1';
                 heroSection.style.transform = 'translateY(0)';
+                heroSection.style.transition = 'none';
             }
         }
     }, delay);
     
-    // Progressive loading for other sections on mobile
+    // Disable progressive loading on mobile - show all sections immediately
     if (isMobile) {
         setTimeout(() => {
             const sections = document.querySelectorAll('.section-fade:not(#home .section-fade)');
-            sections.forEach((section, index) => {
-                setTimeout(() => {
-                    if (!section.classList.contains('visible')) {
-                        section.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                        section.style.opacity = '0.3';
-                        section.style.transform = 'translateY(10px)';
-                    }
-                }, index * 100);
+            sections.forEach((section) => {
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+                section.style.transition = 'none';
+                section.classList.add('visible');
             });
-        }, 500);
+        }, 100);
     }
 }
 
@@ -314,20 +311,11 @@ function initIntersectionObserver() {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
                 
-                // Mobile-specific progressive animation
+                // Disable fade animations on mobile - show immediately
                 if (isMobile) {
-                    const ratio = entry.intersectionRatio;
-                    entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                    entry.target.style.opacity = Math.max(0.3, ratio);
-                    entry.target.style.transform = `translateY(${(1 - ratio) * 20}px)`;
-                    
-                    // Ensure full visibility when fully in view
-                    if (ratio > 0.5) {
-                        setTimeout(() => {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }, 100);
-                    }
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'none';
                 }
             }
         });
@@ -656,19 +644,11 @@ function initAdvancedScrollAnimations() {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
                 
-                // Mobile-optimized progressive animation
+                // Disable fade animations on mobile - show immediately
                 if (isMobile) {
-                    entry.target.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-                    entry.target.style.opacity = Math.max(0.4, ratio);
-                    entry.target.style.transform = `translateY(${(1 - ratio) * 15}px)`;
-                    
-                    // Ensure full visibility when fully in view
-                    if (ratio > 0.5) {
-                        setTimeout(() => {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0)';
-                        }, 200);
-                    }
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'none';
                 } else {
                     // Desktop progressive animation
                     entry.target.style.transform = `translateY(${(1 - ratio) * 30}px)`;
@@ -834,16 +814,14 @@ function initMobileGeometricEnhancements() {
             });
         }, 500);
         
-        // Mobile scroll fade optimization
+        // Disable scroll fade animations on mobile
         const sections = document.querySelectorAll('.section-fade');
         sections.forEach(section => {
-            // Pre-load sections for smoother scrolling
-            section.style.willChange = 'opacity, transform';
-            
-            // Add touch scroll optimization
-            section.addEventListener('touchstart', function() {
-                this.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-            }, { passive: true });
+            // Disable all fade animations on mobile
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+            section.style.transition = 'none';
+            section.style.willChange = 'auto';
         });
         
         // Optimize scroll performance on mobile
@@ -875,7 +853,10 @@ window.addEventListener('resize', () => {
         const sections = document.querySelectorAll('.section-fade');
         sections.forEach(section => {
             if (window.innerWidth <= 768) {
-                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                // Disable fade animations on mobile
+                section.style.opacity = '1';
+                section.style.transform = 'translateY(0)';
+                section.style.transition = 'none';
             } else {
                 section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             }
