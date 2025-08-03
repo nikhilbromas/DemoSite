@@ -88,6 +88,25 @@
             transform: translateY(0);
         }
         
+        /* Mobile-specific fade optimizations */
+        @media (max-width: 768px) {
+            .section-fade {
+                opacity: 0;
+                transform: translateY(20px);
+                transition: opacity 0.5s ease, transform 0.5s ease;
+                will-change: opacity, transform;
+            }
+            .section-fade.visible {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            /* Ensure smooth animations on mobile */
+            .section-fade * {
+                will-change: auto;
+            }
+        }
+        
         /* Animated Background Elements */
         .floating-shapes {
             position: absolute;
