@@ -339,6 +339,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initGeometricAnimations();
     initInteractiveShapes();
     initCursorEffects();
+    initServiceTabNavigation();
     
     // Initial calls
     updateActiveNav();
@@ -869,6 +870,48 @@ window.addEventListener('load', () => {
     // Remove any loading states
     document.body.classList.add('loaded');
 });
+
+// Service tab navigation with smooth transitions
+function initServiceTabNavigation() {
+    const serviceTabs = document.querySelectorAll('.service-tab');
+    const pageTransition = document.getElementById('page-transition');
+    
+    serviceTabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const href = this.getAttribute('href');
+            if (!href) return;
+            
+            // Add click animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+            
+            // Trigger page transition
+            if (pageTransition) {
+                pageTransition.classList.add('active');
+                
+                // Navigate after transition
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 300);
+            } else {
+                // Fallback if transition element not found
+                window.location.href = href;
+            }
+        });
+        
+        // Keyboard navigation
+        tab.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                this.click();
+            }
+        });
+    });
+}
 
 // Service worker registration for PWA (optional)
 if ('serviceWorker' in navigator) {
